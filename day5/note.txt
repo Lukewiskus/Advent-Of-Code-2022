@@ -1,0 +1,1 @@
+I could not do it quickly in python so instead im going to try to make a more elegant solution in C++.

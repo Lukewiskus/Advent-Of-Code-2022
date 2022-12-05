@@ -12,3 +12,6 @@ main: $(SRC_DIR)/main.cc
 
 run:
 	./main
+
+clean:
+	rm -f main
