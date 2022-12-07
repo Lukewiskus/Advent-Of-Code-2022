@@ -61,7 +61,7 @@ void Ship::ParseInput() {
         else {
             count++;
             //print count
-            std::cout << count << std::endl;
+            // std::cout << count << std::endl;
             ProccessMove(line);
             
             
@@ -111,23 +111,26 @@ void Ship::ProccessMove(std::string instruction) {
     std::string line;
     int count = 0;
     while (std::getline(ss, line)) {
-        
-        for(int i = 0; i < line.size(); i++){
-            if(line[i] >= '0' && line[i] <= '9') {
-                if(line[i] != ' ') {  
-                    int num = std::stoi(line.substr(i, i+1));
-                    instructionVector.push_back(num);
-                }
-            }  
-        }
+        int countWhiteSpaces = 0;
+
+        std::string temp = "";
+        int num1 = std::stoi(line.substr(5, line.find('f') - 5));
+        int num2 = std::stoi(line.substr(line.find('r') + 3, line.find('t') - ((line.find('r') + 4))));
+        int num3 = std::stoi(line.substr(line.find('t') + 3, line.size()));
+
+
+
+        instructionVector.push_back(num1);
+        instructionVector.push_back(num2);
+        instructionVector.push_back(num3);
     }
     //print count
-    
+    //part 2
     for (int i = 0; i < instructionVector.size(); i += 3) {
         int amount = instructionVector[i];
         int from = instructionVector[i + 1];
         int to = instructionVector[i + 2];
-        std::queue<std::string> placeholder;
+        std::stack<std::string> placeholder;
         
         for (int j = 0; j < amount; j++) {
             std::string tempVal = cargo[from - 1].top();
@@ -136,13 +139,35 @@ void Ship::ProccessMove(std::string instruction) {
             placeholder.push(tempVal);
         }
         for (int j = 0; j < amount; j++) {
-           cargo[to - 1].push(placeholder.front());
+           cargo[to - 1].push(placeholder.top());
            placeholder.pop();
         }
 
-        placeholder.empty();
+        
         
         
     }
+    //part 1
+    // for (int i = 0; i < instructionVector.size(); i += 3) {
+    //     int amount = instructionVector[i];
+    //     int from = instructionVector[i + 1];
+    //     int to = instructionVector[i + 2];
+    //     std::queue<std::string> placeholder;
+        
+    //     for (int j = 0; j < amount; j++) {
+    //         std::string tempVal = cargo[from - 1].top();
+            
+    //         cargo[from - 1].pop();
+    //         placeholder.push(tempVal);
+    //     }
+    //     for (int j = 0; j < amount; j++) {
+    //        cargo[to - 1].push(placeholder.front());
+    //        placeholder.pop();
+    //     }
+
+    //     placeholder.empty();
+        
+        
+    // }
     return;
 }

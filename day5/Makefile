@@ -2,7 +2,7 @@ CXX=g++
 SRC_DIR = src
 INC_DIR = include
 OBJECTS_DIR = objects
-CXXFLAGS = -std=c++17 -g 
+CXXFLAGS = -std=c++20 -g 
 
 all: before ship main after
 
